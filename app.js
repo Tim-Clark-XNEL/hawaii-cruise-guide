@@ -47,7 +47,7 @@ const trip = {
       name: "Pride of America",
       date: "July 18-25",
       detail: "Honolulu round trip cruise",
-      url: "",
+      url: "https://www.ncl.com/",
     },
     {
       name: "The Royal Hawaiian",
@@ -84,7 +84,10 @@ const trip = {
         "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
       notes: "Allow extra time at DFW and keep medications in your carry-on.",
       items: [
-        { text: "Depart DFW at 9:15 AM" },
+        { text: "Flight AA115: DFW to HNL" },
+        { text: "Departure window: 9:15 AM to 12:11 PM" },
+        { text: "Duration: 7h 56m, nonstop" },
+        { text: "Seats: 25L / 25K / 23L" },
         {
           text: "Check into The Laylow Waikiki",
           url: "https://www.marriott.com/en-us/hotels/hnlak-the-laylow-waikiki-autograph-collection/overview/",
@@ -269,45 +272,12 @@ const trip = {
       image:
         "https://cache.marriott.com/is/image/marriotts7prod/ak-hnlak-laylow-waikiki-pool-41268%3AFeature-Hor?fit=constrain&wid=1920",
       notes: "Plenty of time for a calm last day before heading to the airport.",
-      items: [{ text: "Fly home, departing around 5:30 PM" }],
-    },
-  ],
-  extras: [
-    {
-      location: "Maui",
-      idea: "Molokini and Turtle Town snorkeling adventure",
-      meta: "$160 per person",
-      url: "https://www.viator.com/tours/Maui/Molokini-and-Turtle-Town-Snorkeling-Adventure/d671-9281P1",
-    },
-    {
-      location: "Maui",
-      idea: "ATV adventure",
-      meta: "Research option",
-      url: "",
-    },
-    {
-      location: "Hilo",
-      idea: "Volcanoes & Tastes of Hawaii",
-      meta: "Cruise excursion idea",
-      url: "",
-    },
-    {
-      location: "Kona",
-      idea: "Sea turtles, historic Kona, and coffee excursion",
-      meta: "$150 per person",
-      url: "https://www.viator.com/tours/Big-Island-of-Hawaii/Kona-Shore-Excursion-Hawaiian-Sea-Turtles-Historic-Kona-and-Coffee/d669-22796P13",
-    },
-    {
-      location: "Kauai",
-      idea: "Luau Kalamaku premium seating",
-      meta: "Research option",
-      url: "",
-    },
-    {
-      location: "Kauai",
-      idea: "Stand-up paddle rental to Secret Falls",
-      meta: "$65 per person",
-      url: "https://www.viator.com/tours/Kauai/Stand-Up-Paddle-Rental-Wailua-River-to-Secret-Falls/d670-331110P1",
+      items: [
+        { text: "Flight AA6: HNL to DFW" },
+        { text: "Departure window: 5:39 PM to 6:00 AM" },
+        { text: "Duration: 7h 21m, nonstop" },
+        { text: "Seats: 27L / 25K / 26L" },
+      ],
     },
   ],
 };
@@ -379,8 +349,8 @@ function render() {
 
       <section class="panel panel--intro">
         <div>
-          <p class="eyebrow">Trip Notes</p>
-          <h2>Built for just the two of you</h2>
+          <p class="eyebrow">Quick Read</p>
+          <h2>Your shared trip dashboard</h2>
         </div>
         <p>
           This version is built for quick phone check-ins, with one place to keep your links,
@@ -422,8 +392,12 @@ function render() {
               <p class="card__label">Ship</p>
               <h3>Norwegian Cruise Line</h3>
               <p class="routeCard__ship">Pride of America</p>
+              <p class="routeCard__link">${renderLink("https://www.ncl.com/", "View NCL")}</p>
             </div>
             <p class="routeCard__summary">Honolulu round trip with Maui, the Big Island, and Kauai in between.</p>
+          </div>
+          <div class="routeMapWrap">
+            <img class="routeMap" src="./assets/route-map.png" alt="Cruise route map showing Honolulu, Kahului, Hilo, Kona, and Nawiliwili" />
           </div>
           <div class="routeLine" aria-label="Cruise route stops">
             ${trip.route
@@ -520,28 +494,6 @@ function render() {
                     </ul>
                     <p class="note">${escapeHtml(day.notes)}</p>
                   </div>
-                </article>
-              `,
-            )
-            .join("")}
-        </div>
-      </section>
-
-      <section class="section" id="extras">
-        <div class="section__heading">
-          <p class="eyebrow">Maybe List</p>
-          <h2>Extra ideas from the spreadsheet</h2>
-          <p class="section__lede">Backup plans and fun options if the day shifts once you’re there.</p>
-        </div>
-        <div class="grid grid--two">
-          ${trip.extras
-            .map(
-              (extra) => `
-                <article class="card">
-                  <p class="card__label">${escapeHtml(extra.location)}</p>
-                  <h3>${escapeHtml(extra.idea)}</h3>
-                  <p>${escapeHtml(extra.meta)}</p>
-                  ${renderLink(extra.url, "View option")}
                 </article>
               `,
             )

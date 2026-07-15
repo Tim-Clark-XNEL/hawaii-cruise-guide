@@ -279,10 +279,26 @@ h3 {
   font-weight: 800;
 }
 
+.routeCard__link {
+  margin: 10px 0 0;
+}
+
 .routeCard__summary {
   margin: 0;
   max-width: 34rem;
   color: rgba(244, 251, 252, 0.82);
+}
+
+.routeMapWrap {
+  overflow: hidden;
+  margin-bottom: 20px;
+  border-radius: 22px;
+  background: rgba(216, 239, 244, 0.92);
+}
+
+.routeMap {
+  width: 100%;
+  height: auto;
 }
 
 .routeLine {
