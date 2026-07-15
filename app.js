@@ -1,6 +1,3 @@
-import React from "https://esm.sh/react@18.3.1";
-import { createRoot } from "https://esm.sh/react-dom@18.3.1/client";
-
 const trip = {
   title: "Tim & Tina's Hawaiian Cruise",
   subtitle: "Pride of America",
@@ -87,8 +84,12 @@ const trip = {
       theme: "Embarkation",
       image:
         "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?auto=format&fit=crop&w=1200&q=80",
-      notes: "Use rideshare with luggage. Cruise check-in is between 1:00-1:30 PM and sail away is at 7:00 PM.",
-      items: [{ text: "Cruise check-in window from 1:00-1:30 PM" }, { text: "Sail away at 7:00 PM" }],
+      notes:
+        "Use rideshare with luggage. Cruise check-in is between 1:00-1:30 PM and sail away is at 7:00 PM.",
+      items: [
+        { text: "Cruise check-in window from 1:00-1:30 PM" },
+        { text: "Sail away at 7:00 PM" },
+      ],
     },
     {
       day: "Day 2",
@@ -132,7 +133,8 @@ const trip = {
       theme: "Waterfalls + town",
       image:
         "https://images.unsplash.com/photo-1564882357082-5af7f3cbd17f?auto=format&fit=crop&w=1200&q=80",
-      notes: "Rainbow Falls is best earlier in the day, and the Hilo Bay Cafe reservation anchors the schedule.",
+      notes:
+        "Rainbow Falls is best earlier in the day, and the Hilo Bay Cafe reservation anchors the schedule.",
       items: [
         {
           text: "Rainbow Falls",
@@ -296,33 +298,55 @@ const trip = {
   ],
 };
 
-function App() {
-  return (
-    <main className="shell">
-      <section className="hero">
-        <div className="hero__imageWrap">
-          <img className="hero__image" src={trip.heroImage} alt="Hawaiian ocean view" />
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function renderLink(url, label, className = "") {
+  if (!url) {
+    return `<span class="muted">Details coming soon</span>`;
+  }
+  return `<a class="${className}" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
+}
+
+function render() {
+  const root = document.getElementById("root");
+
+  root.innerHTML = `
+    <main class="shell">
+      <section class="hero">
+        <div class="hero__imageWrap">
+          <img class="hero__image" src="${escapeHtml(trip.heroImage)}" alt="Hawaiian ocean view" />
         </div>
-        <div className="hero__content">
-          <p className="eyebrow">{trip.subtitle}</p>
-          <h1>{trip.title}</h1>
-          <p className="hero__date">{trip.dateRange}</p>
-          <p className="hero__tagline">{trip.tagline}</p>
-          <div className="hero__overview">
-            {trip.overview.map((item) => (
-              <article key={item.label} className="heroCard">
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-                <small>{item.detail}</small>
-              </article>
-            ))}
+        <div class="hero__content">
+          <p class="eyebrow">${escapeHtml(trip.subtitle)}</p>
+          <h1>${escapeHtml(trip.title)}</h1>
+          <p class="hero__date">${escapeHtml(trip.dateRange)}</p>
+          <p class="hero__tagline">${escapeHtml(trip.tagline)}</p>
+          <div class="hero__overview">
+            ${trip.overview
+              .map(
+                (item) => `
+                  <article class="heroCard">
+                    <span>${escapeHtml(item.label)}</span>
+                    <strong>${escapeHtml(item.value)}</strong>
+                    <small>${escapeHtml(item.detail)}</small>
+                  </article>
+                `,
+              )
+              .join("")}
           </div>
         </div>
       </section>
 
-      <section className="panel panel--intro">
+      <section class="panel panel--intro">
         <div>
-          <p className="eyebrow">Trip Notes</p>
+          <p class="eyebrow">Trip Notes</p>
           <h2>Made for phones, not printers</h2>
         </div>
         <p>
@@ -331,125 +355,129 @@ function App() {
         </p>
       </section>
 
-      <section className="section">
-        <div className="section__heading">
-          <p className="eyebrow">Stay + Sail</p>
+      <section class="section">
+        <div class="section__heading">
+          <p class="eyebrow">Stay + Sail</p>
           <h2>Hotels and cruise plan</h2>
         </div>
-        <div className="grid grid--three">
-          {trip.hotels.map((stop) => (
-            <article key={stop.name} className="card card--soft">
-              <p className="card__label">{stop.date}</p>
-              <h3>{stop.name}</h3>
-              <p>{stop.detail}</p>
-              {stop.url ? (
-                <a href={stop.url} target="_blank" rel="noreferrer">
-                  Open details
-                </a>
-              ) : (
-                <span className="muted">Details coming soon</span>
-              )}
-            </article>
-          ))}
+        <div class="grid grid--three">
+          ${trip.hotels
+            .map(
+              (stop) => `
+                <article class="card card--soft">
+                  <p class="card__label">${escapeHtml(stop.date)}</p>
+                  <h3>${escapeHtml(stop.name)}</h3>
+                  <p>${escapeHtml(stop.detail)}</p>
+                  ${renderLink(stop.url, "Open details")}
+                </article>
+              `,
+            )
+            .join("")}
         </div>
       </section>
 
-      <section className="section">
-        <div className="section__heading">
-          <p className="eyebrow">Flights</p>
+      <section class="section">
+        <div class="section__heading">
+          <p class="eyebrow">Flights</p>
           <h2>Air travel</h2>
         </div>
-        <div className="flightList">
-          {trip.flights.map((flight) => (
-            <article key={flight.flight} className="flightCard">
-              <div>
-                <p className="card__label">{flight.date}</p>
-                <h3>{flight.route}</h3>
-                <p>{flight.flight}</p>
-              </div>
-              <dl>
-                <div>
-                  <dt>Time</dt>
-                  <dd>{flight.time}</dd>
-                </div>
-                <div>
-                  <dt>Duration</dt>
-                  <dd>{flight.duration}</dd>
-                </div>
-                <div>
-                  <dt>Seats</dt>
-                  <dd>{flight.seats}</dd>
-                </div>
-              </dl>
-            </article>
-          ))}
+        <div class="flightList">
+          ${trip.flights
+            .map(
+              (flight) => `
+                <article class="flightCard">
+                  <div>
+                    <p class="card__label">${escapeHtml(flight.date)}</p>
+                    <h3>${escapeHtml(flight.route)}</h3>
+                    <p>${escapeHtml(flight.flight)}</p>
+                  </div>
+                  <dl>
+                    <div>
+                      <dt>Time</dt>
+                      <dd>${escapeHtml(flight.time)}</dd>
+                    </div>
+                    <div>
+                      <dt>Duration</dt>
+                      <dd>${escapeHtml(flight.duration)}</dd>
+                    </div>
+                    <div>
+                      <dt>Seats</dt>
+                      <dd>${escapeHtml(flight.seats)}</dd>
+                    </div>
+                  </dl>
+                </article>
+              `,
+            )
+            .join("")}
         </div>
       </section>
 
-      <section className="section">
-        <div className="section__heading">
-          <p className="eyebrow">Daily Plan</p>
+      <section class="section">
+        <div class="section__heading">
+          <p class="eyebrow">Daily Plan</p>
           <h2>Day-by-day itinerary</h2>
         </div>
-        <div className="timeline">
-          {trip.days.map((day) => (
-            <article key={day.day} className="dayCard">
-              <img className="dayCard__image" src={day.image} alt={day.place} />
-              <div className="dayCard__content">
-                <div className="dayCard__titleRow">
-                  <div>
-                    <p className="card__label">
-                      {day.day} • {day.date}
-                    </p>
-                    <h3>{day.place}</h3>
+        <div class="timeline">
+          ${trip.days
+            .map(
+              (day) => `
+                <article class="dayCard">
+                  <img class="dayCard__image" src="${escapeHtml(day.image)}" alt="${escapeHtml(day.place)}" />
+                  <div class="dayCard__content">
+                    <div class="dayCard__titleRow">
+                      <div>
+                        <p class="card__label">${escapeHtml(day.day)} • ${escapeHtml(day.date)}</p>
+                        <h3>${escapeHtml(day.place)}</h3>
+                      </div>
+                      <span class="pill">${escapeHtml(day.theme)}</span>
+                    </div>
+                    <ul class="agenda">
+                      ${day.items
+                        .map(
+                          (item) => `
+                            <li>
+                              ${
+                                item.url
+                                  ? renderLink(item.url, item.text)
+                                  : `<span>${escapeHtml(item.text)}</span>`
+                              }
+                              ${item.meta ? `<small>${escapeHtml(item.meta)}</small>` : ""}
+                            </li>
+                          `,
+                        )
+                        .join("")}
+                    </ul>
+                    <p class="note">${escapeHtml(day.notes)}</p>
                   </div>
-                  <span className="pill">{day.theme}</span>
-                </div>
-                <ul className="agenda">
-                  {day.items.map((item) => (
-                    <li key={item.text}>
-                      {item.url ? (
-                        <a href={item.url} target="_blank" rel="noreferrer">
-                          {item.text}
-                        </a>
-                      ) : (
-                        <span>{item.text}</span>
-                      )}
-                      {item.meta ? <small>{item.meta}</small> : null}
-                    </li>
-                  ))}
-                </ul>
-                <p className="note">{day.notes}</p>
-              </div>
-            </article>
-          ))}
+                </article>
+              `,
+            )
+            .join("")}
         </div>
       </section>
 
-      <section className="section">
-        <div className="section__heading">
-          <p className="eyebrow">Maybe List</p>
+      <section class="section">
+        <div class="section__heading">
+          <p class="eyebrow">Maybe List</p>
           <h2>Extra ideas from the spreadsheet</h2>
         </div>
-        <div className="grid grid--two">
-          {trip.extras.map((extra) => (
-            <article key={extra.location + extra.idea} className="card">
-              <p className="card__label">{extra.location}</p>
-              <h3>{extra.idea}</h3>
-              <p>{extra.meta}</p>
-              {extra.url ? (
-                <a href={extra.url} target="_blank" rel="noreferrer">
-                  View option
-                </a>
-              ) : (
-                <span className="muted">Link to be added</span>
-              )}
-            </article>
-          ))}
+        <div class="grid grid--two">
+          ${trip.extras
+            .map(
+              (extra) => `
+                <article class="card">
+                  <p class="card__label">${escapeHtml(extra.location)}</p>
+                  <h3>${escapeHtml(extra.idea)}</h3>
+                  <p>${escapeHtml(extra.meta)}</p>
+                  ${renderLink(extra.url, "View option")}
+                </article>
+              `,
+            )
+            .join("")}
         </div>
       </section>
     </main>
-  );
+  `;
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+render();
