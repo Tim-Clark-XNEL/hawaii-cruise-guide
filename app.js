@@ -96,6 +96,14 @@ const trip = {
           url: "https://www.marriott.com/en-us/hotels/hnlak-the-laylow-waikiki-autograph-collection/overview/",
         },
       ],
+      highlight: {
+        label: "Hotel",
+        title: "The Laylow Waikiki",
+        caption: "Your first night in Waikiki before boarding Pride of America.",
+        image:
+          "https://cache.marriott.com/is/image/marriotts7prod/ak-hnlak-laylow-waikiki-pool-41268%3AFeature-Hor?fit=constrain&wid=1920",
+        url: "https://www.marriott.com/en-us/hotels/hnlak-the-laylow-waikiki-autograph-collection/overview/",
+      },
     },
     {
       day: "Day 1",
@@ -131,6 +139,14 @@ const trip = {
           url: "https://oldlahainaluau.com/show-info/",
         },
       ],
+      highlight: {
+        label: "Booked Highlight",
+        title: "Snorkel + luau day",
+        caption: "A big Maui day with water time, then the luau with Nik and Leah.",
+        image:
+          "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+        url: "https://seamaui.com/snorkeling/afternoon-west-maui-snorkel/",
+      },
     },
     {
       day: "Day 3",
@@ -148,6 +164,13 @@ const trip = {
           meta: "$282 per person",
         },
       ],
+      highlight: {
+        label: "Booked Highlight",
+        title: "Road to Hana",
+        caption: "A scenic full-day tour through waterfalls, curves, and coastal overlooks.",
+        image: "https://www.lovebigisland.com/wp-content/uploads/aerial-road-to-hana.jpg",
+        url: "https://www.viator.com/tours/Maui/Small-Group-Road-to-Hana-Tour/d671-17824P3",
+      },
     },
     {
       day: "Day 4",
@@ -181,6 +204,13 @@ const trip = {
           url: "https://www.liliuokalanigardens.org/?utm_source=chatgpt.com",
         },
       ],
+      highlight: {
+        label: "Reservation",
+        title: "Hilo Bay Cafe",
+        caption: "Lunch reservation for 4 at noon, with waterfall and town stops around it.",
+        image: "https://www.lovebigisland.com/wp-content/uploads/rainbow-falls-big-island-hawaii-1.jpg",
+        url: "https://hilobaycafe.com/",
+      },
     },
     {
       day: "Day 5",
@@ -209,6 +239,13 @@ const trip = {
           url: "https://www.gohawaii.com/islands/hawaii-big-island/regions/kona/hulihee-palace",
         },
       ],
+      highlight: {
+        label: "Reservation",
+        title: "Fish Hopper Kona",
+        caption: "Lunch reservation for 4 at 1:00 PM, with a flexible Kona port day around it.",
+        image: "https://bigisland.org/wp-content/uploads/2022/11/Ali_Drive._Shops-1025x769.jpg",
+        url: "https://www.fishhopperkona.com/about/",
+      },
     },
     {
       day: "Day 6",
@@ -233,6 +270,14 @@ const trip = {
           url: "https://www.oldkoloa.com/",
         },
       ],
+      highlight: {
+        label: "Day Focus",
+        title: "Poipu south shore day",
+        caption: "A more relaxed beach-and-coast day on Kauai's sunny south shore.",
+        image:
+          "https://www.gohawaii.com/sites/default/files/styles/image_gallery_bg_xl/public/hero-unit-images/Poipuhorizontal%20-%20Kicka.jpg.webp?itok=nddYCgLV",
+        url: "https://www.gohawaii.com/islands/kauai/regions/south-shore/poipu-beach-park",
+      },
     },
     {
       day: "Day 7",
@@ -241,7 +286,7 @@ const trip = {
       place: "Nawiliwili, Kauai",
       theme: "Resort day options",
       image:
-        "https://www.gohawaii.com/sites/default/files/styles/image_gallery_bg_xl/public/hero-unit-images/Poipuhorizontal%20-%20Kicka.jpg.webp?itok=nddYCgLV",
+        "https://www.hyatt.com/content/dam/hyatt/hyattdam/images/2015/04/15/1110/Grand-Hyatt-Kauai-P153-Exterior.jpg/Grand-Hyatt-Kauai-P153-Exterior.16x9.jpg?imwidth=1920",
       notes: "Resort-day availability should be confirmed before the cruise.",
       items: [
         {
@@ -257,6 +302,14 @@ const trip = {
           url: "https://www.resortpass.com/hotels/royal-sonesta-kauai-resort?date=2026-07-24",
         },
       ],
+      highlight: {
+        label: "Resort Option",
+        title: "Grand Hyatt Kauai",
+        caption: "The leading resort-day option if the spa pass works out.",
+        image:
+          "https://www.hyatt.com/content/dam/hyatt/hyattdam/images/2015/04/15/1110/Grand-Hyatt-Kauai-P153-Exterior.jpg/Grand-Hyatt-Kauai-P153-Exterior.16x9.jpg?imwidth=1920",
+        url: "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa",
+      },
     },
     {
       day: "Day 8",
@@ -274,6 +327,14 @@ const trip = {
           url: "https://www.marriott.com/en-us/hotels/hnllc-the-royal-hawaiian-a-luxury-collection-resort-waikiki/overview/?nst=paid&cid=PAI_GLB0004YXD_GLE000BIM5_GLF000OETA&ppc=ppc&pId=ustbppc&gclsrc=aw.ds&gad_source=1&gad_campaignid=1658413570&gbraid=0AAAAADilnidDsnaKO1M7uxPnApWM79vTv&gclid=CjwKCAjwmdLSBhANEiwAkREMN5abUR0CyBrORdOT3EnIa32zfJrjmJhD-an6aaQLcp7rrkOD_fsCCRoCdGYQAvD_BwE",
         },
       ],
+      highlight: {
+        label: "Hotel",
+        title: "The Royal Hawaiian",
+        caption: "Your final Waikiki night after the cruise wraps up.",
+        image:
+          "https://cache.marriott.com/content/dam/marriott-renditions/HNLLC/hnllc-building-1813-hor-feat.jpg?downsize=1920px%3A%2A&interpolation=progressive-bilinear&output-quality=70",
+        url: "https://www.marriott.com/en-us/hotels/hnllc-the-royal-hawaiian-a-luxury-collection-resort-waikiki/overview/?nst=paid&cid=PAI_GLB0004YXD_GLE000BIM5_GLF000OETA&ppc=ppc&pId=ustbppc&gclsrc=aw.ds&gad_source=1&gad_campaignid=1658413570&gbraid=0AAAAADilnidDsnaKO1M7uxPnApWM79vTv&gclid=CjwKCAjwmdLSBhANEiwAkREMN5abUR0CyBrORdOT3EnIa32zfJrjmJhD-an6aaQLcp7rrkOD_fsCCRoCdGYQAvD_BwE",
+      },
     },
     {
       day: "Day 9",
@@ -527,6 +588,21 @@ function render() {
                       </div>
                       <span class="pill">${escapeHtml(day.theme)}</span>
                     </div>
+                    ${
+                      day.highlight
+                        ? `
+                          <article class="highlightCard">
+                            <img class="highlightCard__image" src="${escapeHtml(day.highlight.image)}" alt="${escapeHtml(day.highlight.title)}" />
+                            <div class="highlightCard__content">
+                              <p class="highlightCard__label">${escapeHtml(day.highlight.label)}</p>
+                              <h4>${escapeHtml(day.highlight.title)}</h4>
+                              <p>${escapeHtml(day.highlight.caption)}</p>
+                              ${renderLink(day.highlight.url, "Open highlight", "highlightCard__link")}
+                            </div>
+                          </article>
+                        `
+                        : ""
+                    }
                     <ul class="agenda">
                       ${day.items
                         .map(
