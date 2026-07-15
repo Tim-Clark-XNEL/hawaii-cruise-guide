@@ -2,14 +2,22 @@ const trip = {
   title: "Tim & Tina's Hawaiian Cruise",
   subtitle: "Pride of America",
   dateRange: "July 17-26, 2026",
-  tagline: "A shareable island guide for flights, port days, beach plans, and last-minute decisions.",
+  tagline: "A private island-hopping guide for Tim and Tina aboard Norwegian Cruise Line's Pride of America.",
   heroImage:
     "https://cache.marriott.com/content/dam/marriott-renditions/HNLLC/hnllc-building-1813-hor-feat.jpg?downsize=1920px%3A%2A&interpolation=progressive-bilinear&output-quality=70",
   stats: [
-    { label: "Travelers", value: "4" },
+    { label: "Travelers", value: "2" },
     { label: "Islands", value: "4" },
     { label: "Port Days", value: "7" },
     { label: "Hotel Nights", value: "2" },
+  ],
+  route: [
+    { stop: "Honolulu", island: "Oahu", detail: "Embarkation", active: true },
+    { stop: "Kahului", island: "Maui", detail: "2 days" },
+    { stop: "Hilo", island: "Hawaii", detail: "Waterfalls + town" },
+    { stop: "Kona", island: "Hawaii", detail: "Tender port" },
+    { stop: "Nawiliwili", island: "Kauai", detail: "2 days" },
+    { stop: "Honolulu", island: "Oahu", detail: "Return stay" },
   ],
   overview: [
     {
@@ -364,19 +372,19 @@ function render() {
 
       <nav class="jumpNav" aria-label="Jump to section">
         <a href="#overview">Overview</a>
+        <a href="#route">Route</a>
         <a href="#flights">Flights</a>
         <a href="#itinerary">Itinerary</a>
-        <a href="#extras">Extras</a>
       </nav>
 
       <section class="panel panel--intro">
         <div>
           <p class="eyebrow">Trip Notes</p>
-          <h2>Made to be passed around</h2>
+          <h2>Built for just the two of you</h2>
         </div>
         <p>
-          This version is built for quick check-ins on a phone, with one place to keep activity links,
-          hotel details, flight info, and the evolving day-by-day plan.
+          This version is built for quick phone check-ins, with one place to keep your links,
+          hotel details, flight info, cruise route, and the evolving day-by-day plan for Tim and Tina.
         </p>
       </section>
 
@@ -384,7 +392,7 @@ function render() {
         <div class="section__heading">
           <p class="eyebrow">Stay + Sail</p>
           <h2>Hotels and cruise plan</h2>
-          <p class="section__lede">The core logistics, all together, before the island hopping starts.</p>
+          <p class="section__lede">The core logistics, all together, before you step aboard Pride of America.</p>
         </div>
         <div class="grid grid--three">
           ${trip.hotels
@@ -399,6 +407,41 @@ function render() {
               `,
             )
             .join("")}
+        </div>
+      </section>
+
+      <section class="section" id="route">
+        <div class="section__heading">
+          <p class="eyebrow">Cruise Route</p>
+          <h2>Pride of America route map</h2>
+          <p class="section__lede">A simple at-a-glance view of the island sequence from embarkation to return.</p>
+        </div>
+        <div class="routeCard">
+          <div class="routeCard__meta">
+            <div>
+              <p class="card__label">Ship</p>
+              <h3>Norwegian Cruise Line</h3>
+              <p class="routeCard__ship">Pride of America</p>
+            </div>
+            <p class="routeCard__summary">Honolulu round trip with Maui, the Big Island, and Kauai in between.</p>
+          </div>
+          <div class="routeLine" aria-label="Cruise route stops">
+            ${trip.route
+              .map(
+                (stop, index) => `
+                  <div class="routeStop${stop.active ? " routeStop--active" : ""}">
+                    <div class="routeStop__dot"></div>
+                    <div class="routeStop__text">
+                      <strong>${escapeHtml(stop.stop)}</strong>
+                      <span>${escapeHtml(stop.island)}</span>
+                      <small>${escapeHtml(stop.detail)}</small>
+                    </div>
+                  </div>
+                  ${index < trip.route.length - 1 ? `<div class="routeLine__connector" aria-hidden="true"></div>` : ""}
+                `,
+              )
+              .join("")}
+          </div>
         </div>
       </section>
 
@@ -443,7 +486,7 @@ function render() {
         <div class="section__heading">
           <p class="eyebrow">Daily Plan</p>
           <h2>Day-by-day itinerary</h2>
-          <p class="section__lede">Port days, beach options, reservations, and the links you’ll actually use.</p>
+          <p class="section__lede">Port days, beach options, reservations, and the links you’ll actually use on the ship.</p>
         </div>
         <div class="timeline">
           ${trip.days

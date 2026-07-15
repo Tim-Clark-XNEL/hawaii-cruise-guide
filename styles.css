@@ -259,6 +259,86 @@ h3 {
   color: var(--muted);
 }
 
+.routeCard {
+  padding: 20px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(11, 79, 85, 0.93), rgba(15, 108, 116, 0.86));
+  color: #f4fbfc;
+  box-shadow: var(--shadow);
+}
+
+.routeCard__meta {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.routeCard__ship {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.routeCard__summary {
+  margin: 0;
+  max-width: 34rem;
+  color: rgba(244, 251, 252, 0.82);
+}
+
+.routeLine {
+  display: grid;
+  gap: 0;
+}
+
+.routeStop {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.routeStop__dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  margin-top: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+.routeStop--active .routeStop__dot {
+  background: var(--sunset);
+  border-color: #fff1eb;
+  box-shadow: 0 0 0 8px rgba(230, 125, 95, 0.18);
+}
+
+.routeStop__text strong,
+.routeStop__text span,
+.routeStop__text small {
+  display: block;
+}
+
+.routeStop__text span,
+.routeStop__text small {
+  color: rgba(244, 251, 252, 0.78);
+}
+
+.routeStop__text span {
+  margin-top: 2px;
+  font-weight: 700;
+}
+
+.routeStop__text small {
+  margin-top: 4px;
+}
+
+.routeLine__connector {
+  width: 2px;
+  min-height: 28px;
+  margin: 4px 0 4px 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.15));
+}
+
 .grid--three,
 .grid--two {
   grid-template-columns: 1fr;
@@ -389,6 +469,11 @@ h3 {
   .flightCard {
     grid-template-columns: 1.1fr 1fr;
     align-items: start;
+  }
+
+  .routeCard__meta {
+    grid-template-columns: 1fr auto;
+    align-items: end;
   }
 
   .dayCard {
