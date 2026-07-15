@@ -2,9 +2,15 @@ const trip = {
   title: "Tim & Tina's Hawaiian Cruise",
   subtitle: "Pride of America",
   dateRange: "July 17-26, 2026",
-  tagline: "A phone-friendly guide for flights, port days, and all the fun links.",
+  tagline: "A shareable island guide for flights, port days, beach plans, and last-minute decisions.",
   heroImage:
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+    "https://cache.marriott.com/content/dam/marriott-renditions/HNLLC/hnllc-building-1813-hor-feat.jpg?downsize=1920px%3A%2A&interpolation=progressive-bilinear&output-quality=70",
+  stats: [
+    { label: "Travelers", value: "4" },
+    { label: "Islands", value: "4" },
+    { label: "Port Days", value: "7" },
+    { label: "Hotel Nights", value: "2" },
+  ],
   overview: [
     {
       label: "Start",
@@ -83,7 +89,7 @@ const trip = {
       place: "Honolulu, Oahu",
       theme: "Embarkation",
       image:
-        "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?auto=format&fit=crop&w=1200&q=80",
+        "https://cache.marriott.com/is/image/marriotts7prod/ak-hnlak-laylow-waikiki-pool-41268%3AFeature-Hor?fit=constrain&wid=1920",
       notes:
         "Use rideshare with luggage. Cruise check-in is between 1:00-1:30 PM and sail away is at 7:00 PM.",
       items: [
@@ -97,7 +103,7 @@ const trip = {
       place: "Kahului, Maui",
       theme: "Snorkel + luau",
       image:
-        "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80",
+        "https://www.lovebigisland.com/wp-content/uploads/aerial-road-to-hana.jpg",
       notes: "Keep water, sunscreen, and a light layer handy.",
       items: [
         {
@@ -116,7 +122,7 @@ const trip = {
       place: "Kahului, Maui",
       theme: "Road to Hana",
       image:
-        "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1200&q=80",
+        "https://www.lovebigisland.com/wp-content/uploads/aerial-road-to-hana.jpg",
       notes: "Cell service can get spotty on the Road to Hana.",
       items: [
         {
@@ -132,7 +138,7 @@ const trip = {
       place: "Hilo, Hawaii",
       theme: "Waterfalls + town",
       image:
-        "https://images.unsplash.com/photo-1564882357082-5af7f3cbd17f?auto=format&fit=crop&w=1200&q=80",
+        "https://www.lovebigisland.com/wp-content/uploads/rainbow-falls-big-island-hawaii-1.jpg",
       notes:
         "Rainbow Falls is best earlier in the day, and the Hilo Bay Cafe reservation anchors the schedule.",
       items: [
@@ -164,7 +170,7 @@ const trip = {
       place: "Kona, Hawaii",
       theme: "Flexible port day",
       image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+        "https://bigisland.org/wp-content/uploads/2022/11/Ali_Drive._Shops-1025x769.jpg",
       notes: "This is a tender port, so leave buffer time to get back to the ship.",
       items: [
         { text: "Tender port" },
@@ -191,7 +197,7 @@ const trip = {
       place: "Nawiliwili, Kauai",
       theme: "South shore",
       image:
-        "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80",
+        "https://www.gohawaii.com/sites/default/files/styles/image_gallery_bg_xl/public/hero-unit-images/Poipuhorizontal%20-%20Kicka.jpg.webp?itok=nddYCgLV",
       notes: "Keep this one relaxed and coastal.",
       items: [
         {
@@ -214,7 +220,7 @@ const trip = {
       place: "Nawiliwili, Kauai",
       theme: "Resort day options",
       image:
-        "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80",
+        "https://www.gohawaii.com/sites/default/files/styles/image_gallery_bg_xl/public/hero-unit-images/Poipuhorizontal%20-%20Kicka.jpg.webp?itok=nddYCgLV",
       notes: "Resort-day availability should be confirmed before the cruise.",
       items: [
         {
@@ -237,7 +243,7 @@ const trip = {
       place: "Honolulu, Oahu",
       theme: "Disembark + hotel night",
       image:
-        "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80",
+        "https://cache.marriott.com/is/image/marriotts7prod/ak-hnlak-laylow-waikiki-pool-41268%3AFeature-Hor?fit=constrain&wid=1920",
       notes: "No rush in the morning. Waikiki is close enough to keep the day easy.",
       items: [
         { text: "Disembark in the morning" },
@@ -253,7 +259,7 @@ const trip = {
       place: "Honolulu to Dallas",
       theme: "Fly home",
       image:
-        "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80",
+        "https://cache.marriott.com/is/image/marriotts7prod/ak-hnlak-laylow-waikiki-pool-41268%3AFeature-Hor?fit=constrain&wid=1920",
       notes: "Plenty of time for a calm last day before heading to the airport.",
       items: [{ text: "Fly home, departing around 5:30 PM" }],
     },
@@ -328,6 +334,18 @@ function render() {
           <h1>${escapeHtml(trip.title)}</h1>
           <p class="hero__date">${escapeHtml(trip.dateRange)}</p>
           <p class="hero__tagline">${escapeHtml(trip.tagline)}</p>
+          <div class="statsBar">
+            ${trip.stats
+              .map(
+                (item) => `
+                  <div class="statPill">
+                    <strong>${escapeHtml(item.value)}</strong>
+                    <span>${escapeHtml(item.label)}</span>
+                  </div>
+                `,
+              )
+              .join("")}
+          </div>
           <div class="hero__overview">
             ${trip.overview
               .map(
@@ -344,21 +362,29 @@ function render() {
         </div>
       </section>
 
+      <nav class="jumpNav" aria-label="Jump to section">
+        <a href="#overview">Overview</a>
+        <a href="#flights">Flights</a>
+        <a href="#itinerary">Itinerary</a>
+        <a href="#extras">Extras</a>
+      </nav>
+
       <section class="panel panel--intro">
         <div>
           <p class="eyebrow">Trip Notes</p>
-          <h2>Made for phones, not printers</h2>
+          <h2>Made to be passed around</h2>
         </div>
         <p>
-          This first version is set up as a shareable web guide that we can keep improving
-          with better content, maps, confirmations, and last-minute changes before the trip.
+          This version is built for quick check-ins on a phone, with one place to keep activity links,
+          hotel details, flight info, and the evolving day-by-day plan.
         </p>
       </section>
 
-      <section class="section">
+      <section class="section" id="overview">
         <div class="section__heading">
           <p class="eyebrow">Stay + Sail</p>
           <h2>Hotels and cruise plan</h2>
+          <p class="section__lede">The core logistics, all together, before the island hopping starts.</p>
         </div>
         <div class="grid grid--three">
           ${trip.hotels
@@ -376,10 +402,11 @@ function render() {
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="flights">
         <div class="section__heading">
           <p class="eyebrow">Flights</p>
           <h2>Air travel</h2>
+          <p class="section__lede">The details that always get checked twice on travel days.</p>
         </div>
         <div class="flightList">
           ${trip.flights
@@ -412,10 +439,11 @@ function render() {
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="itinerary">
         <div class="section__heading">
           <p class="eyebrow">Daily Plan</p>
           <h2>Day-by-day itinerary</h2>
+          <p class="section__lede">Port days, beach options, reservations, and the links you’ll actually use.</p>
         </div>
         <div class="timeline">
           ${trip.days
@@ -456,10 +484,11 @@ function render() {
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="extras">
         <div class="section__heading">
           <p class="eyebrow">Maybe List</p>
           <h2>Extra ideas from the spreadsheet</h2>
+          <p class="section__lede">Backup plans and fun options if the day shifts once you’re there.</p>
         </div>
         <div class="grid grid--two">
           ${trip.extras

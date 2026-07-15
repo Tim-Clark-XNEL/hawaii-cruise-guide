@@ -134,10 +134,43 @@ h3 {
   font-size: 1rem;
 }
 
+.statsBar,
+.jumpNav,
 .hero__overview,
 .grid {
   display: grid;
   gap: 14px;
+}
+
+.statsBar {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 20px;
+}
+
+.statPill {
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(24, 48, 58, 0.08);
+}
+
+.statPill strong,
+.statPill span {
+  display: block;
+}
+
+.statPill strong {
+  font-size: 1.25rem;
+  font-family: "Fraunces", serif;
+}
+
+.statPill span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .hero__overview {
@@ -189,6 +222,22 @@ h3 {
   padding: 22px;
 }
 
+.jumpNav {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 26px;
+}
+
+.jumpNav a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 52px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, 0.88);
+  border: 1px solid rgba(15, 108, 116, 0.14);
+  box-shadow: var(--shadow);
+}
+
 .panel p:last-child,
 .card p:last-child {
   margin-bottom: 0;
@@ -202,6 +251,12 @@ h3 {
   display: grid;
   gap: 6px;
   margin-bottom: 14px;
+}
+
+.section__lede {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--muted);
 }
 
 .grid--three,
@@ -312,6 +367,14 @@ h3 {
   .shell {
     width: min(1180px, calc(100vw - 48px));
     padding-top: 28px;
+  }
+
+  .statsBar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .jumpNav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .hero__overview,
