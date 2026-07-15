@@ -134,6 +134,18 @@ h3 {
   font-size: 1rem;
 }
 
+.countdownBar {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 18px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(15, 108, 116, 0.12);
+  color: var(--teal-deep);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
 .statsBar,
 .jumpNav,
 .hero__overview,
@@ -291,7 +303,6 @@ h3 {
 
 .routeMapWrap {
   overflow: hidden;
-  margin-bottom: 20px;
   border-radius: 22px;
   background: rgba(216, 239, 244, 0.92);
 }
@@ -299,6 +310,18 @@ h3 {
 .routeMap {
   width: 100%;
   height: auto;
+}
+
+.routeMap__caption {
+  margin: 0;
+  padding: 10px 14px 14px;
+  color: #19414b;
+  font-size: 0.88rem;
+}
+
+.routeLayout {
+  display: grid;
+  gap: 18px;
 }
 
 .routeLine {
@@ -459,6 +482,25 @@ h3 {
   font-size: 0.95rem;
 }
 
+.siteFooter {
+  margin-top: 38px;
+  padding: 28px 24px 40px;
+  border-top: 1px solid rgba(24, 48, 58, 0.1);
+  text-align: center;
+}
+
+.siteFooter__title {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.25rem;
+}
+
+.siteFooter__body {
+  max-width: 34rem;
+  margin: 10px auto 0;
+  color: var(--muted);
+}
+
 @media (min-width: 720px) {
   .shell {
     width: min(1180px, calc(100vw - 48px));
@@ -484,6 +526,11 @@ h3 {
 
   .flightCard {
     grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+  }
+
+  .routeLayout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
     align-items: start;
   }
 

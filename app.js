@@ -3,6 +3,7 @@ const trip = {
   subtitle: "Pride of America",
   dateRange: "July 17-26, 2026",
   tagline: "A private island-hopping guide for Tim and Tina aboard Norwegian Cruise Line's Pride of America.",
+  sailAwayDate: "2026-07-18T19:00:00-10:00",
   heroImage:
     "https://cache.marriott.com/content/dam/marriott-renditions/HNLLC/hnllc-building-1813-hor-feat.jpg?downsize=1920px%3A%2A&interpolation=progressive-bilinear&output-quality=70",
   stats: [
@@ -12,12 +13,12 @@ const trip = {
     { label: "Hotel Nights", value: "2" },
   ],
   route: [
-    { stop: "Honolulu", island: "Oahu", detail: "Embarkation", active: true },
-    { stop: "Kahului", island: "Maui", detail: "2 days" },
-    { stop: "Hilo", island: "Hawaii", detail: "Waterfalls + town" },
-    { stop: "Kona", island: "Hawaii", detail: "Tender port" },
-    { stop: "Nawiliwili", island: "Kauai", detail: "2 days" },
-    { stop: "Honolulu", island: "Oahu", detail: "Return stay" },
+    { stop: "Honolulu", island: "Oahu", detail: "Embarkation", start: "2026-07-18", end: "2026-07-18" },
+    { stop: "Kahului", island: "Maui", detail: "2 days", start: "2026-07-19", end: "2026-07-20" },
+    { stop: "Hilo", island: "Hawaii", detail: "Waterfalls + town", start: "2026-07-21", end: "2026-07-21" },
+    { stop: "Kona", island: "Hawaii", detail: "Tender port", start: "2026-07-22", end: "2026-07-22" },
+    { stop: "Nawiliwili", island: "Kauai", detail: "2 days", start: "2026-07-23", end: "2026-07-24" },
+    { stop: "Honolulu", island: "Oahu", detail: "Return stay", start: "2026-07-25", end: "2026-07-26" },
   ],
   overview: [
     {
@@ -85,7 +86,8 @@ const trip = {
       notes: "Allow extra time at DFW and keep medications in your carry-on.",
       items: [
         { text: "Flight AA115: DFW to HNL" },
-        { text: "Departure window: 9:15 AM to 12:11 PM" },
+        { text: "Depart DFW at 9:15 AM" },
+        { text: "Arrive HNL at 12:11 PM" },
         { text: "Duration: 7h 56m, nonstop" },
         { text: "Seats: 25L / 25K / 23L" },
         {
@@ -274,7 +276,8 @@ const trip = {
       notes: "Plenty of time for a calm last day before heading to the airport.",
       items: [
         { text: "Flight AA6: HNL to DFW" },
-        { text: "Departure window: 5:39 PM to 6:00 AM" },
+        { text: "Depart HNL at 5:39 PM" },
+        { text: "Arrive DFW at 6:00 AM" },
         { text: "Duration: 7h 21m, nonstop" },
         { text: "Seats: 27L / 25K / 26L" },
       ],
@@ -298,8 +301,43 @@ function renderLink(url, label, className = "") {
   return `<a class="${className}" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
 }
 
+function startOfDay(value) {
+  const date = new Date(value);
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function getCountdownLabel() {
+  const now = new Date();
+  const sailAway = new Date(trip.sailAwayDate);
+  const diffMs = sailAway.getTime() - now.getTime();
+  const dayMs = 24 * 60 * 60 * 1000;
+  const days = Math.ceil(diffMs / dayMs);
+
+  if (days > 1) return `${days} days until sail away`;
+  if (days === 1) return "1 day until sail away";
+  if (days === 0) return "Sail away is today";
+  return "Pride of America is already underway";
+}
+
+function getActiveRouteIndex() {
+  const today = startOfDay(new Date());
+  const index = trip.route.findIndex((stop) => {
+    const start = startOfDay(stop.start);
+    const end = startOfDay(stop.end);
+    return today >= start && today <= end;
+  });
+
+  if (index >= 0) return index;
+
+  const first = startOfDay(trip.route[0].start);
+  if (today < first) return 0;
+  return trip.route.length - 1;
+}
+
 function render() {
   const root = document.getElementById("root");
+  const activeRouteIndex = getActiveRouteIndex();
+  const countdownLabel = getCountdownLabel();
 
   root.innerHTML = `
     <main class="shell">
@@ -312,6 +350,7 @@ function render() {
           <h1>${escapeHtml(trip.title)}</h1>
           <p class="hero__date">${escapeHtml(trip.dateRange)}</p>
           <p class="hero__tagline">${escapeHtml(trip.tagline)}</p>
+          <div class="countdownBar">${escapeHtml(countdownLabel)}</div>
           <div class="statsBar">
             ${trip.stats
               .map(
@@ -346,17 +385,6 @@ function render() {
         <a href="#flights">Flights</a>
         <a href="#itinerary">Itinerary</a>
       </nav>
-
-      <section class="panel panel--intro">
-        <div>
-          <p class="eyebrow">Quick Read</p>
-          <h2>Your shared trip dashboard</h2>
-        </div>
-        <p>
-          This version is built for quick phone check-ins, with one place to keep your links,
-          hotel details, flight info, cruise route, and the evolving day-by-day plan for Tim and Tina.
-        </p>
-      </section>
 
       <section class="section" id="overview">
         <div class="section__heading">
@@ -396,14 +424,16 @@ function render() {
             </div>
             <p class="routeCard__summary">Honolulu round trip with Maui, the Big Island, and Kauai in between.</p>
           </div>
-          <div class="routeMapWrap">
-            <img class="routeMap" src="./assets/route-map.png" alt="Cruise route map showing Honolulu, Kahului, Hilo, Kona, and Nawiliwili" />
-          </div>
-          <div class="routeLine" aria-label="Cruise route stops">
-            ${trip.route
-              .map(
-                (stop, index) => `
-                  <div class="routeStop${stop.active ? " routeStop--active" : ""}">
+          <div class="routeLayout">
+            <div class="routeMapWrap">
+              <img class="routeMap" src="./assets/route-map.png" alt="Cruise route map showing Honolulu, Kahului, Hilo, Kona, and Nawiliwili" />
+              <p class="routeMap__caption">The map stays fixed, but the highlighted stop and countdown update based on the current date.</p>
+            </div>
+            <div class="routeLine" aria-label="Cruise route stops">
+              ${trip.route
+                .map(
+                  (stop, index) => `
+                  <div class="routeStop${index === activeRouteIndex ? " routeStop--active" : ""}">
                     <div class="routeStop__dot"></div>
                     <div class="routeStop__text">
                       <strong>${escapeHtml(stop.stop)}</strong>
@@ -413,8 +443,9 @@ function render() {
                   </div>
                   ${index < trip.route.length - 1 ? `<div class="routeLine__connector" aria-hidden="true"></div>` : ""}
                 `,
-              )
-              .join("")}
+                )
+                .join("")}
+            </div>
           </div>
         </div>
       </section>
@@ -500,6 +531,10 @@ function render() {
             .join("")}
         </div>
       </section>
+      <footer class="siteFooter">
+        <p class="siteFooter__title">Tim & Tina's Hawaiian Cruise</p>
+        <p class="siteFooter__body">One place for the route, flights, hotel details, and daily plan aboard Pride of America.</p>
+      </footer>
     </main>
   `;
 }
