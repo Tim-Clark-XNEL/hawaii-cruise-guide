@@ -78,6 +78,7 @@ const trip = {
   days: [
     {
       day: "Day 0",
+      isoDate: "2026-07-17",
       date: "Friday, July 17",
       place: "Dallas to Honolulu",
       theme: "Travel day",
@@ -98,6 +99,7 @@ const trip = {
     },
     {
       day: "Day 1",
+      isoDate: "2026-07-18",
       date: "Saturday, July 18",
       place: "Honolulu, Oahu",
       theme: "Embarkation",
@@ -112,6 +114,7 @@ const trip = {
     },
     {
       day: "Day 2",
+      isoDate: "2026-07-19",
       date: "Sunday, July 19",
       place: "Kahului, Maui",
       theme: "Snorkel + luau",
@@ -120,17 +123,18 @@ const trip = {
       notes: "Keep water, sunscreen, and a light layer handy.",
       items: [
         {
-          text: "Snorkel from 12:30-4:00 PM",
+          text: "Snorkel from 12:30-4:00 PM with your friends",
           url: "https://seamaui.com/snorkeling/afternoon-west-maui-snorkel/",
         },
         {
-          text: "Old Lahaina Luau at 6:00 PM",
+          text: "Old Lahaina Luau at 6:00 PM with your friends",
           url: "https://oldlahainaluau.com/show-info/",
         },
       ],
     },
     {
       day: "Day 3",
+      isoDate: "2026-07-20",
       date: "Monday, July 20",
       place: "Kahului, Maui",
       theme: "Road to Hana",
@@ -139,7 +143,7 @@ const trip = {
       notes: "Cell service can get spotty on the Road to Hana.",
       items: [
         {
-          text: "Small-group Road to Hana tour",
+          text: "Small-group Road to Hana tour with your friends",
           url: "https://www.viator.com/tours/Maui/Small-Group-Road-to-Hana-Tour/d671-17824P3",
           meta: "$282 per person",
         },
@@ -147,6 +151,7 @@ const trip = {
     },
     {
       day: "Day 4",
+      isoDate: "2026-07-21",
       date: "Tuesday, July 21",
       place: "Hilo, Hawaii",
       theme: "Waterfalls + town",
@@ -168,7 +173,7 @@ const trip = {
           url: "https://www.gohawaii.com/islands/hawaii-big-island/regions/hilo/downtown-hilo",
         },
         {
-          text: "Lunch reservation at Hilo Bay Cafe",
+          text: "Lunch reservation at Hilo Bay Cafe for 4 at noon",
           url: "https://hilobaycafe.com/",
         },
         {
@@ -179,6 +184,7 @@ const trip = {
     },
     {
       day: "Day 5",
+      isoDate: "2026-07-22",
       date: "Wednesday, July 22",
       place: "Kona, Hawaii",
       theme: "Flexible port day",
@@ -192,7 +198,7 @@ const trip = {
           url: "https://bigisland.org/alii-drive-shopping-dining-swimming-and-sightseeing-along-konas-seaside-mainstreet/",
         },
         {
-          text: "Fish Hopper reservation at 1:00 PM",
+          text: "Fish Hopper reservation for 4 at 1:00 PM",
           url: "https://www.fishhopperkona.com/about/",
         },
         {
@@ -206,6 +212,7 @@ const trip = {
     },
     {
       day: "Day 6",
+      isoDate: "2026-07-23",
       date: "Thursday, July 23",
       place: "Nawiliwili, Kauai",
       theme: "South shore",
@@ -229,6 +236,7 @@ const trip = {
     },
     {
       day: "Day 7",
+      isoDate: "2026-07-24",
       date: "Friday, July 24",
       place: "Nawiliwili, Kauai",
       theme: "Resort day options",
@@ -252,6 +260,7 @@ const trip = {
     },
     {
       day: "Day 8",
+      isoDate: "2026-07-25",
       date: "Saturday, July 25",
       place: "Honolulu, Oahu",
       theme: "Disembark + hotel night",
@@ -268,6 +277,7 @@ const trip = {
     },
     {
       day: "Day 9",
+      isoDate: "2026-07-26",
       date: "Sunday, July 26",
       place: "Honolulu to Dallas",
       theme: "Fly home",
@@ -334,9 +344,20 @@ function getActiveRouteIndex() {
   return trip.route.length - 1;
 }
 
+function getActiveDayIndex() {
+  const today = startOfDay(new Date());
+  const index = trip.days.findIndex((day) => today.getTime() === startOfDay(day.isoDate).getTime());
+  if (index >= 0) return index;
+
+  const first = startOfDay(trip.days[0].isoDate);
+  if (today < first) return 0;
+  return trip.days.length - 1;
+}
+
 function render() {
   const root = document.getElementById("root");
   const activeRouteIndex = getActiveRouteIndex();
+  const activeDayIndex = getActiveDayIndex();
   const countdownLabel = getCountdownLabel();
 
   root.innerHTML = `
@@ -420,14 +441,13 @@ function render() {
               <p class="card__label">Ship</p>
               <h3>Norwegian Cruise Line</h3>
               <p class="routeCard__ship">Pride of America</p>
-              <p class="routeCard__link">${renderLink("https://www.ncl.com/", "View NCL")}</p>
+              <p class="routeCard__link">${renderLink("https://www.ncl.com/", "View NCL", "buttonLink")}</p>
             </div>
             <p class="routeCard__summary">Honolulu round trip with Maui, the Big Island, and Kauai in between.</p>
           </div>
           <div class="routeLayout">
             <div class="routeMapWrap">
               <img class="routeMap" src="./assets/route-map.png" alt="Cruise route map showing Honolulu, Kahului, Hilo, Kona, and Nawiliwili" />
-              <p class="routeMap__caption">The map stays fixed, but the highlighted stop and countdown update based on the current date.</p>
             </div>
             <div class="routeLine" aria-label="Cruise route stops">
               ${trip.route
@@ -496,8 +516,8 @@ function render() {
         <div class="timeline">
           ${trip.days
             .map(
-              (day) => `
-                <article class="dayCard">
+              (day, index) => `
+                <article class="dayCard${index === activeDayIndex ? " dayCard--active" : ""}">
                   <img class="dayCard__image" src="${escapeHtml(day.image)}" alt="${escapeHtml(day.place)}" />
                   <div class="dayCard__content">
                     <div class="dayCard__titleRow">
@@ -534,6 +554,7 @@ function render() {
       <footer class="siteFooter">
         <p class="siteFooter__title">Tim & Tina's Hawaiian Cruise</p>
         <p class="siteFooter__body">One place for the route, flights, hotel details, and daily plan aboard Pride of America.</p>
+        <p class="siteFooter__meta">Auto-highlighting updates based on the current date.</p>
       </footer>
     </main>
   `;
