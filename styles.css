@@ -1,0 +1,356 @@
+:root {
+  --bg: #f7f0df;
+  --surface: rgba(255, 251, 245, 0.86);
+  --surface-strong: #fff8ef;
+  --text: #18303a;
+  --muted: #5e7680;
+  --line: rgba(24, 48, 58, 0.12);
+  --teal: #0f6c74;
+  --teal-deep: #0b4f55;
+  --sunset: #e67d5f;
+  --gold: #d2a53c;
+  --shadow: 0 18px 50px rgba(20, 49, 58, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(230, 125, 95, 0.18), transparent 24rem),
+    radial-gradient(circle at top right, rgba(15, 108, 116, 0.24), transparent 26rem),
+    linear-gradient(180deg, #f9f4e8 0%, #f6ecda 48%, #f0e6d5 100%);
+}
+
+a {
+  color: var(--teal-deep);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.shell {
+  width: min(1100px, calc(100vw - 24px));
+  margin: 0 auto;
+  padding: 18px 0 60px;
+}
+
+.hero {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.hero__imageWrap,
+.panel,
+.card,
+.flightCard,
+.dayCard {
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.hero__imageWrap {
+  overflow: hidden;
+  border-radius: 28px;
+  min-height: 300px;
+  background: #dbe8ea;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+}
+
+.hero__content {
+  border-radius: 28px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(255, 248, 239, 0.95), rgba(255, 252, 247, 0.82));
+  border: 1px solid rgba(15, 108, 116, 0.15);
+  box-shadow: var(--shadow);
+}
+
+.eyebrow,
+.card__label {
+  margin: 0 0 8px;
+  color: var(--sunset);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  line-height: 1.02;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 8vw, 4.8rem);
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.hero__date {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.hero__tagline {
+  max-width: 38rem;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.hero__overview,
+.grid {
+  display: grid;
+  gap: 14px;
+}
+
+.hero__overview {
+  margin-top: 22px;
+}
+
+.heroCard,
+.card,
+.flightCard,
+.dayCard__content,
+.panel {
+  border-radius: 24px;
+}
+
+.heroCard {
+  padding: 16px;
+  background: rgba(15, 108, 116, 0.08);
+  border: 1px solid rgba(15, 108, 116, 0.08);
+}
+
+.heroCard span,
+.heroCard small {
+  display: block;
+}
+
+.heroCard span,
+.muted {
+  color: var(--muted);
+}
+
+.heroCard strong {
+  display: block;
+  margin: 4px 0;
+  font-size: 1.1rem;
+}
+
+.panel,
+.card,
+.flightCard,
+.dayCard {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+}
+
+.panel {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 22px;
+}
+
+.panel p:last-child,
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.section {
+  margin-top: 30px;
+}
+
+.section__heading {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.grid--three,
+.grid--two {
+  grid-template-columns: 1fr;
+}
+
+.card {
+  padding: 18px;
+}
+
+.card--soft {
+  background: var(--surface-strong);
+}
+
+.flightList,
+.timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.flightCard {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.flightCard dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.flightCard dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.flightCard dd {
+  margin: 4px 0 0;
+  font-weight: 700;
+}
+
+.dayCard {
+  overflow: hidden;
+}
+
+.dayCard__image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.dayCard__content {
+  padding: 18px;
+}
+
+.dayCard__titleRow {
+  display: grid;
+  gap: 12px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: rgba(230, 125, 95, 0.14);
+  color: #9d4f39;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.agenda {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agenda li {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(24, 48, 58, 0.08);
+}
+
+.agenda small,
+.note {
+  color: var(--muted);
+}
+
+.note {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(210, 165, 60, 0.12);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 720px) {
+  .shell {
+    width: min(1180px, calc(100vw - 48px));
+    padding-top: 28px;
+  }
+
+  .hero__overview,
+  .grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flightCard {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+  }
+
+  .dayCard {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+  }
+
+  .dayCard__image {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .dayCard__titleRow {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+}
+
+@media (min-width: 980px) {
+  .hero {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: stretch;
+  }
+
+  .hero__image {
+    min-height: 100%;
+  }
+}
