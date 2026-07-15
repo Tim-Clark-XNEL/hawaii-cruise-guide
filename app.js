@@ -13,12 +13,12 @@ const trip = {
     { label: "Hotel Nights", value: "2" },
   ],
   route: [
-    { stop: "Honolulu", island: "Oahu", detail: "Embarkation", start: "2026-07-18", end: "2026-07-18" },
-    { stop: "Kahului", island: "Maui", detail: "2 days", start: "2026-07-19", end: "2026-07-20" },
-    { stop: "Hilo", island: "Hawaii", detail: "Waterfalls + town", start: "2026-07-21", end: "2026-07-21" },
-    { stop: "Kona", island: "Hawaii", detail: "Tender port", start: "2026-07-22", end: "2026-07-22" },
-    { stop: "Nawiliwili", island: "Kauai", detail: "2 days", start: "2026-07-23", end: "2026-07-24" },
-    { stop: "Honolulu", island: "Oahu", detail: "Return stay", start: "2026-07-25", end: "2026-07-26" },
+    { stop: "Honolulu", island: "Oahu", detail: "1 day • Embarkation", start: "2026-07-18", end: "2026-07-18" },
+    { stop: "Kahului", island: "Maui", detail: "2 days • Snorkel + Road to Hana", start: "2026-07-19", end: "2026-07-20" },
+    { stop: "Hilo", island: "Hawaii", detail: "1 day • Falls + lunch in town", start: "2026-07-21", end: "2026-07-21" },
+    { stop: "Kona", island: "Hawaii", detail: "1 day • Tender port + lunch", start: "2026-07-22", end: "2026-07-22" },
+    { stop: "Nawiliwili", island: "Kauai", detail: "2 days • South shore + resort day", start: "2026-07-23", end: "2026-07-24" },
+    { stop: "Honolulu", island: "Oahu", detail: "2 days • Return stay + flight home", start: "2026-07-25", end: "2026-07-26" },
   ],
   overview: [
     {
@@ -123,11 +123,11 @@ const trip = {
       notes: "Keep water, sunscreen, and a light layer handy.",
       items: [
         {
-          text: "Snorkel from 12:30-4:00 PM with your friends",
+          text: "Snorkel from 12:30-4:00 PM with Nik and Leah",
           url: "https://seamaui.com/snorkeling/afternoon-west-maui-snorkel/",
         },
         {
-          text: "Old Lahaina Luau at 6:00 PM with your friends",
+          text: "Old Lahaina Luau at 6:00 PM with Nik and Leah",
           url: "https://oldlahainaluau.com/show-info/",
         },
       ],
@@ -143,7 +143,7 @@ const trip = {
       notes: "Cell service can get spotty on the Road to Hana.",
       items: [
         {
-          text: "Small-group Road to Hana tour with your friends",
+          text: "Small-group Road to Hana tour with Nik and Leah",
           url: "https://www.viator.com/tours/Maui/Small-Group-Road-to-Hana-Tour/d671-17824P3",
           meta: "$282 per person",
         },
@@ -554,7 +554,6 @@ function render() {
       <footer class="siteFooter">
         <p class="siteFooter__title">Tim & Tina's Hawaiian Cruise</p>
         <p class="siteFooter__body">One place for the route, flights, hotel details, and daily plan aboard Pride of America.</p>
-        <p class="siteFooter__meta">Auto-highlighting updates based on the current date.</p>
       </footer>
     </main>
   `;
