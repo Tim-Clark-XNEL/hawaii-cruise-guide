@@ -440,12 +440,6 @@ h3 {
   box-shadow: 0 24px 60px rgba(230, 125, 95, 0.16);
 }
 
-.dayCard__image {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
 .dayCard__content {
   padding: 18px;
 }
@@ -455,50 +449,25 @@ h3 {
   gap: 12px;
 }
 
-.highlightCard {
+.dayGallery {
   display: grid;
-  gap: 0;
-  margin-top: 18px;
-  overflow: hidden;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(24, 48, 58, 0.08);
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
 }
 
-.highlightCard__image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.highlightCard__content {
-  padding: 16px;
-}
-
-.highlightCard__label {
-  margin: 0 0 8px;
-  color: var(--sunset);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.highlightCard__content h4 {
+.dayGallery__slide {
   margin: 0;
-  font-family: "Fraunces", serif;
-  font-size: 1.2rem;
-  line-height: 1.08;
+  min-width: 0;
+  scroll-snap-align: start;
 }
 
-.highlightCard__content p {
-  margin: 10px 0 0;
-  color: var(--muted);
-}
-
-.highlightCard__link {
-  display: inline-flex;
-  margin-top: 14px;
+.dayGallery__image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
 }
 
 .pill {
@@ -606,7 +575,7 @@ h3 {
     grid-template-columns: 280px 1fr;
   }
 
-  .dayCard__image {
+  .dayGallery__image {
     height: 100%;
     min-height: 100%;
   }
@@ -614,15 +583,6 @@ h3 {
   .dayCard__titleRow {
     grid-template-columns: 1fr auto;
     align-items: start;
-  }
-
-  .highlightCard {
-    grid-template-columns: 180px 1fr;
-  }
-
-  .highlightCard__image {
-    height: 100%;
-    min-height: 100%;
   }
 }
 
