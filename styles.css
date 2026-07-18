@@ -454,53 +454,61 @@ h3 {
   gap: 10px;
   align-items: center;
   width: fit-content;
+  flex-wrap: wrap;
   margin-top: 14px;
   padding: 10px 14px;
-  border-radius: 999px;
+  border-radius: 16px;
   background: rgba(15, 108, 116, 0.08);
   color: var(--teal-deep);
 }
 
 .weatherChip__icon {
-  width: 18px;
-  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
   border-radius: 999px;
   flex: 0 0 auto;
+  font-size: 0.95rem;
+  line-height: 1;
 }
 
 .weatherChip__icon--sun {
-  background: radial-gradient(circle at 35% 35%, #ffd97a, #f5b82e 65%, #d79210);
-  box-shadow: 0 0 0 4px rgba(245, 184, 46, 0.16);
+  background: rgba(245, 184, 46, 0.16);
+  color: #b67800;
 }
 
 .weatherChip__icon--cloud {
-  background: linear-gradient(180deg, #cad8df, #9fb4bf);
-  box-shadow: 0 0 0 4px rgba(159, 180, 191, 0.16);
+  background: rgba(159, 180, 191, 0.18);
+  color: #506977;
 }
 
 .weatherChip__icon--rain {
-  background: linear-gradient(180deg, #85c4d6, #4e93a6);
-  box-shadow: 0 0 0 4px rgba(78, 147, 166, 0.16);
+  background: rgba(78, 147, 166, 0.18);
+  color: #0f6c74;
 }
 
 .weatherChip__icon--storm {
-  background: linear-gradient(180deg, #8e98a8, #626c7b);
-  box-shadow: 0 0 0 4px rgba(98, 108, 123, 0.16);
+  background: rgba(98, 108, 123, 0.18);
+  color: #49515c;
 }
 
-.weatherChip__text {
-  display: grid;
-  gap: 2px;
-}
-
-.weatherChip__text strong {
+.weatherChip__summary {
   font-size: 0.92rem;
+  font-weight: 800;
 }
 
-.weatherChip__text span {
+.weatherChip__temps {
   color: var(--muted);
   font-size: 0.92rem;
   font-weight: 700;
+}
+
+@media (min-width: 720px) {
+  .weatherChip {
+    flex-wrap: nowrap;
+  }
 }
 
 .dayGallery {

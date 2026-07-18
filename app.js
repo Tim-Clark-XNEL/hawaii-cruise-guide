@@ -521,11 +521,19 @@ function getGalleryItems(day) {
 
 function getWeatherIcon(summary) {
   const value = String(summary).toLowerCase();
-  if (value.includes("sunny")) return "sun";
-  if (value.includes("cloud")) return "cloud";
-  if (value.includes("shower") || value.includes("rain") || value.includes("sprinkle")) return "rain";
-  if (value.includes("storm") || value.includes("thunder")) return "storm";
-  return "cloud";
+  if (value.includes("storm") || value.includes("thunder")) {
+    return { key: "storm", symbol: "⚡" };
+  }
+  if (value.includes("shower") || value.includes("rain") || value.includes("sprinkle")) {
+    return { key: "rain", symbol: "☔" };
+  }
+  if (value.includes("sunny")) {
+    return { key: "sun", symbol: "☀" };
+  }
+  if (value.includes("cloud")) {
+    return { key: "cloud", symbol: "☁" };
+  }
+  return { key: "cloud", symbol: "☁" };
 }
 
 function render() {
@@ -714,13 +722,16 @@ function render() {
                     ${
                       day.weather
                         ? `
+                          ${(() => {
+                            const weatherIcon = getWeatherIcon(day.weather.summary);
+                            return `
                           <div class="weatherChip" aria-label="Forecast snapshot">
-                            <span class="weatherChip__icon weatherChip__icon--${escapeHtml(getWeatherIcon(day.weather.summary))}" aria-hidden="true"></span>
-                            <div class="weatherChip__text">
-                              <strong>${escapeHtml(day.weather.summary)}</strong>
-                              <span>${escapeHtml(String(day.weather.high))}° / ${escapeHtml(String(day.weather.low))}°</span>
-                            </div>
+                            <span class="weatherChip__icon weatherChip__icon--${escapeHtml(weatherIcon.key)}" aria-hidden="true">${escapeHtml(weatherIcon.symbol)}</span>
+                            <span class="weatherChip__summary">${escapeHtml(day.weather.summary)}</span>
+                            <span class="weatherChip__temps">${escapeHtml(String(day.weather.high))}° / ${escapeHtml(String(day.weather.low))}°</span>
                           </div>
+                        `;
+                          })()}
                         `
                         : ""
                     }
