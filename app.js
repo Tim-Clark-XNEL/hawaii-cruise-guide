@@ -719,7 +719,6 @@ function render() {
                       galleryItems.length > 1
                         ? `
                           <div class="dayGallery__overlay">
-                            <span class="dayGallery__hint">Swipe photos</span>
                             <div class="dayGallery__dots" aria-hidden="true">
                               ${galleryItems.map((_, dotIndex) => `<span class="dayGallery__dot${dotIndex === 0 ? " dayGallery__dot--active" : ""}"></span>`).join("")}
                             </div>
