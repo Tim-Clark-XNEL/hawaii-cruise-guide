@@ -700,8 +700,12 @@ function render() {
             .map(
               (day, index) => `
                 <article class="dayCard${index === activeDayIndex ? " dayCard--active" : ""}">
-                  <div class="dayGallery" aria-label="${escapeHtml(day.place)} photo gallery">
-                    ${getGalleryItems(day)
+                  ${(() => {
+                    const galleryItems = getGalleryItems(day);
+                    return `
+                  <div class="dayGalleryWrap">
+                    <div class="dayGallery" aria-label="${escapeHtml(day.place)} photo gallery">
+                    ${galleryItems
                       .map(
                         (item) => `
                           <figure class="dayGallery__slide">
@@ -710,7 +714,22 @@ function render() {
                         `,
                       )
                       .join("")}
+                    </div>
+                    ${
+                      galleryItems.length > 1
+                        ? `
+                          <div class="dayGallery__overlay">
+                            <span class="dayGallery__hint">Swipe photos</span>
+                            <div class="dayGallery__dots" aria-hidden="true">
+                              ${galleryItems.map((_, dotIndex) => `<span class="dayGallery__dot${dotIndex === 0 ? " dayGallery__dot--active" : ""}"></span>`).join("")}
+                            </div>
+                          </div>
+                        `
+                        : ""
+                    }
                   </div>
+                    `;
+                  })()}
                   <div class="dayCard__content">
                     <div class="dayCard__titleRow">
                       <div>

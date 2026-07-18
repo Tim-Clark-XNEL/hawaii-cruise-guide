@@ -511,13 +511,21 @@ h3 {
   }
 }
 
+.dayGalleryWrap {
+  position: relative;
+  overflow: hidden;
+  background: rgba(24, 48, 58, 0.04);
+}
+
 .dayGallery {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 100%;
+  grid-auto-columns: 88%;
+  gap: 10px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
+  padding: 0 18px 0 0;
 }
 
 .dayGallery__slide {
@@ -530,6 +538,50 @@ h3 {
   width: 100%;
   height: 240px;
   object-fit: cover;
+  border-right: 1px solid rgba(24, 48, 58, 0.08);
+}
+
+.dayGallery__overlay {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.dayGallery__hint {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(24, 48, 58, 0.68);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dayGallery__dots {
+  display: inline-flex;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(24, 48, 58, 0.52);
+}
+
+.dayGallery__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.dayGallery__dot--active {
+  background: #ffffff;
 }
 
 .pill {
@@ -635,6 +687,11 @@ h3 {
   .dayCard {
     display: grid;
     grid-template-columns: 280px 1fr;
+  }
+
+  .dayGallery {
+    grid-auto-columns: 92%;
+    padding-right: 22px;
   }
 
   .dayGallery__image {
