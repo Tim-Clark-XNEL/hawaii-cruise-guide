@@ -153,11 +153,11 @@ const trip = {
       notes: "Keep water, sunscreen, and a light layer handy.",
       items: [
         {
-          text: "Snorkel from 12:30-4:00 PM with Nik and Leah",
+          text: "Snorkel from 12:30-4:00 PM with Nik and Lea",
           url: "https://seamaui.com/snorkeling/afternoon-west-maui-snorkel/",
         },
         {
-          text: "Old Lahaina Luau at 6:00 PM with Nik and Leah",
+          text: "Old Lahaina Luau at 6:00 PM with Nik and Lea",
           url: "https://oldlahainaluau.com/show-info/",
         },
       ],
@@ -183,7 +183,7 @@ const trip = {
       notes: "Cell service can get spotty on the Road to Hana.",
       items: [
         {
-          text: "Small-group Road to Hana tour with Nik and Leah",
+          text: "Small-group Road to Hana tour with Nik and Lea",
           url: "https://www.viator.com/tours/Maui/Small-Group-Road-to-Hana-Tour/d671-17824P3",
           meta: "$282 per person",
         },
@@ -309,32 +309,38 @@ const trip = {
       isoDate: "2026-07-24",
       date: "Friday, July 24",
       place: "Nawiliwili, Kauai",
-      theme: "Resort day options",
+      theme: "Grand Hyatt day",
       image:
-        "https://resortpass.com/cdn-cgi/image/dpr=1,fit=cover,format=auto,quality=65,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/14621/sonesta_pool10.jpg",
+        "https://resortpass.com/cdn-cgi/image/dpr=1,fit=scale-down,format=auto,quality=60,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/32668/GrandHyattKauai_aerial.jpg",
       gallery: [
         {
-          src: "https://resortpass.com/cdn-cgi/image/dpr=1,fit=cover,format=auto,quality=65,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/14621/sonesta_pool10.jpg",
-          alt: "Resort pool day in Kauai",
+          src: "https://resortpass.com/cdn-cgi/image/dpr=1,fit=scale-down,format=auto,quality=60,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/32668/GrandHyattKauai_aerial.jpg",
+          alt: "Grand Hyatt Kauai resort grounds",
         },
         {
-          src: "https://www.gohawaii.com/sites/default/files/styles/image_gallery_bg_xl/public/hero-unit-images/Poipuhorizontal%20-%20Kicka.jpg.webp?itok=nddYCgLV",
-          alt: "South shore Kauai",
+          src: "https://resortpass.com/cdn-cgi/image/dpr=1,fit=cover,format=auto,quality=65,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/14621/sonesta_pool10.jpg",
+          alt: "Grand Hyatt Kauai pool area",
+        },
+        {
+          src: "https://resortpass.com/cdn-cgi/image/dpr=1,fit=cover,format=auto,quality=65,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/14623/sonesta_poolfountains.jpg",
+          alt: "Tropical resort pool with fountains",
+        },
+        {
+          src: "https://resortpass.com/cdn-cgi/image/dpr=1,fit=cover,format=auto,quality=65,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/14629/sonesta_beach2.jpg",
+          alt: "Beachside resort view on Kauai",
         },
       ],
-      notes: "Resort-day availability should be confirmed before the cruise.",
+      notes: "Your 2 day passes for Tim and Tina are booked. The pool opens at 10:00 AM. All-aboard time still needs to be confirmed on the ship.",
       items: [
         {
-          text: "Grand Hyatt Kauai spa day pass option",
+          text: "2 day passes booked for Tim and Tina at Grand Hyatt Kauai Resort & Spa",
           url: "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa",
         },
         {
-          text: "Fallback: Kalapaki Beach + lunch at Kauai Marriott",
-          url: "https://www.kauai.com/kalapaki-beach",
+          text: "Pool opens at 10:00 AM",
         },
         {
-          text: "Royal Sonesta day pass options",
-          url: "https://www.resortpass.com/hotels/royal-sonesta-kauai-resort?date=2026-07-24",
+          text: "Confirm all-aboard time on the ship before settling in for the day",
         },
       ],
     },
