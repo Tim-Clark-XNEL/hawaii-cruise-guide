@@ -284,8 +284,8 @@ const trip = {
           alt: "Poipu Beach on Kauai",
         },
         {
-          src: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80",
-          alt: "Kauai coastline",
+          src: "https://resortpass.com/cdn-cgi/image/dpr=1,fit=cover,format=auto,quality=65,width=960/https://s3.us-west-2.amazonaws.com/assets.resortpass.com/uploads/image/picture/14629/sonesta_beach2.jpg",
+          alt: "Kauai beach view",
         },
       ],
       notes: "Keep this one relaxed and coastal.",
@@ -330,17 +330,14 @@ const trip = {
           alt: "Beachside resort view on Kauai",
         },
       ],
-      notes: "Your 2 day passes for Tim and Tina are booked. The pool opens at 10:00 AM. All-aboard time still needs to be confirmed on the ship.",
+      notes: "2 day passes for Tim and Tina are booked. The pool opens at 10:00 AM.",
       items: [
         {
-          text: "2 day passes booked for Tim and Tina at Grand Hyatt Kauai Resort & Spa",
+          text: "Grand Hyatt Kauai Resort & Spa",
           url: "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa",
         },
         {
           text: "Pool opens at 10:00 AM",
-        },
-        {
-          text: "Confirm all-aboard time on the ship before settling in for the day",
         },
       ],
     },
@@ -407,9 +404,15 @@ function renderLink(url, label, className = "") {
   return `<a class="${className}" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
 }
 
-function startOfDay(value) {
-  const date = new Date(value);
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+const tripTimeZone = "Pacific/Honolulu";
+
+function getTripDateString(value = new Date()) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: tripTimeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date(value));
 }
 
 function getCountdownLabel() {
@@ -426,26 +429,26 @@ function getCountdownLabel() {
 }
 
 function getActiveRouteIndex() {
-  const today = startOfDay(new Date());
+  const today = getTripDateString();
   const index = trip.route.findIndex((stop) => {
-    const start = startOfDay(stop.start);
-    const end = startOfDay(stop.end);
+    const start = stop.start;
+    const end = stop.end;
     return today >= start && today <= end;
   });
 
   if (index >= 0) return index;
 
-  const first = startOfDay(trip.route[0].start);
+  const first = trip.route[0].start;
   if (today < first) return 0;
   return trip.route.length - 1;
 }
 
 function getActiveDayIndex() {
-  const today = startOfDay(new Date());
-  const index = trip.days.findIndex((day) => today.getTime() === startOfDay(day.isoDate).getTime());
+  const today = getTripDateString();
+  const index = trip.days.findIndex((day) => today === day.isoDate);
   if (index >= 0) return index;
 
-  const first = startOfDay(trip.days[0].isoDate);
+  const first = trip.days[0].isoDate;
   if (today < first) return 0;
   return trip.days.length - 1;
 }
