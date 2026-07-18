@@ -205,7 +205,6 @@ const trip = {
         {
           text: "Small-group Road to Hana tour with Nik and Lea",
           url: "https://www.viator.com/tours/Maui/Small-Group-Road-to-Hana-Tour/d671-17824P3",
-          meta: "$282 per person",
         },
       ],
     },
@@ -520,6 +519,15 @@ function getGalleryItems(day) {
   return [{ src: day.image, alt: day.place }];
 }
 
+function getWeatherIcon(summary) {
+  const value = String(summary).toLowerCase();
+  if (value.includes("sunny")) return "sun";
+  if (value.includes("cloud")) return "cloud";
+  if (value.includes("shower") || value.includes("rain") || value.includes("sprinkle")) return "rain";
+  if (value.includes("storm") || value.includes("thunder")) return "storm";
+  return "cloud";
+}
+
 function render() {
   const root = document.getElementById("root");
   const activeRouteIndex = getActiveRouteIndex();
@@ -707,8 +715,11 @@ function render() {
                       day.weather
                         ? `
                           <div class="weatherChip" aria-label="Forecast snapshot">
-                            <strong>${escapeHtml(day.weather.summary)}</strong>
-                            <span>${escapeHtml(String(day.weather.high))}° / ${escapeHtml(String(day.weather.low))}°</span>
+                            <span class="weatherChip__icon weatherChip__icon--${escapeHtml(getWeatherIcon(day.weather.summary))}" aria-hidden="true"></span>
+                            <div class="weatherChip__text">
+                              <strong>${escapeHtml(day.weather.summary)}</strong>
+                              <span>${escapeHtml(String(day.weather.high))}° / ${escapeHtml(String(day.weather.low))}°</span>
+                            </div>
                           </div>
                         `
                         : ""
