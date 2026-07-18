@@ -521,13 +521,13 @@ h3 {
 .dayGallery {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 88%;
-  gap: 10px;
+  grid-auto-columns: 100%;
+  gap: 0;
   height: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
-  padding: 0 18px 0 0;
+  padding: 0;
 }
 
 .dayGallery__slide {
@@ -675,8 +675,7 @@ h3 {
   }
 
   .dayGallery {
-    grid-auto-columns: 92%;
-    padding-right: 22px;
+    grid-auto-columns: 100%;
   }
 
   .dayGalleryWrap {
