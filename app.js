@@ -94,6 +94,11 @@ const trip = {
           alt: "The Laylow Waikiki",
         },
       ],
+      weather: {
+        summary: "Showers late, broken clouds",
+        high: 79,
+        low: 67,
+      },
       notes: "Allow extra time at DFW and keep medications in your carry-on.",
       items: [
         { text: "Flight AA115: DFW to HNL" },
@@ -125,6 +130,11 @@ const trip = {
           alt: "Honolulu hotel view",
         },
       ],
+      weather: {
+        summary: "Passing showers, overcast",
+        high: 79,
+        low: 70,
+      },
       notes:
         "Use rideshare with luggage. Cruise check-in is between 1:00-1:30 PM and sail away is at 7:00 PM.",
       items: [
@@ -150,6 +160,11 @@ const trip = {
           alt: "Maui coastline",
         },
       ],
+      weather: {
+        summary: "Scattered clouds",
+        high: 87,
+        low: 72,
+      },
       notes: "Keep water, sunscreen, and a light layer handy.",
       items: [
         {
@@ -180,6 +195,11 @@ const trip = {
           alt: "Tropical coastline",
         },
       ],
+      weather: {
+        summary: "Afternoon clouds",
+        high: 86,
+        low: 71,
+      },
       notes: "Cell service can get spotty on the Road to Hana.",
       items: [
         {
@@ -207,6 +227,11 @@ const trip = {
           alt: "Hawaii coastline",
         },
       ],
+      weather: {
+        summary: "Passing showers, broken clouds",
+        high: 81,
+        low: 70,
+      },
       notes:
         "Rainbow Falls is best earlier in the day, and the Hilo Bay Cafe reservation anchors the schedule.",
       items: [
@@ -250,6 +275,11 @@ const trip = {
           alt: "Kona coastline",
         },
       ],
+      weather: {
+        summary: "Mostly cloudy, isolated thunderstorms",
+        high: 83,
+        low: 73,
+      },
       notes: "This is a tender port, so leave buffer time to get back to the ship.",
       items: [
         { text: "Tender port" },
@@ -288,6 +318,11 @@ const trip = {
           alt: "Kauai beach view",
         },
       ],
+      weather: {
+        summary: "Broken clouds",
+        high: 85,
+        low: 75,
+      },
       notes: "Keep this one relaxed and coastal.",
       items: [
         {
@@ -330,6 +365,11 @@ const trip = {
           alt: "Beachside resort view on Kauai",
         },
       ],
+      weather: {
+        summary: "Showers early, broken clouds",
+        high: 85,
+        low: 74,
+      },
       notes: "2 day passes for Tim and Tina are booked. The pool opens at 10:00 AM.",
       items: [
         {
@@ -359,6 +399,11 @@ const trip = {
           alt: "Waikiki hotel pool",
         },
       ],
+      weather: {
+        summary: "Mostly cloudy",
+        high: 81,
+        low: 68,
+      },
       notes: "No rush in the morning. Waikiki is close enough to keep the day easy.",
       items: [
         { text: "Disembark in the morning" },
@@ -376,6 +421,21 @@ const trip = {
       theme: "Fly home",
       image:
         "https://cache.marriott.com/is/image/marriotts7prod/ak-hnlak-laylow-waikiki-pool-41268%3AFeature-Hor?fit=constrain&wid=1920",
+      gallery: [
+        {
+          src: "https://cache.marriott.com/is/image/marriotts7prod/ak-hnlak-laylow-waikiki-pool-41268%3AFeature-Hor?fit=constrain&wid=1920",
+          alt: "Waikiki morning before flight home",
+        },
+        {
+          src: "https://cache.marriott.com/content/dam/marriott-renditions/HNLLC/hnllc-building-1813-hor-feat.jpg?downsize=1920px%3A%2A&interpolation=progressive-bilinear&output-quality=70",
+          alt: "Royal Hawaiian exterior",
+        },
+      ],
+      weather: {
+        summary: "Scattered clouds",
+        high: 81,
+        low: 69,
+      },
       notes: "Plenty of time for a calm last day before heading to the airport.",
       items: [
         { text: "Flight AA6: HNL to DFW" },
@@ -643,6 +703,16 @@ function render() {
                       </div>
                       <span class="pill">${escapeHtml(day.theme)}</span>
                     </div>
+                    ${
+                      day.weather
+                        ? `
+                          <div class="weatherChip" aria-label="Forecast snapshot">
+                            <strong>${escapeHtml(day.weather.summary)}</strong>
+                            <span>${escapeHtml(String(day.weather.high))}° / ${escapeHtml(String(day.weather.low))}°</span>
+                          </div>
+                        `
+                        : ""
+                    }
                     <ul class="agenda">
                       ${day.items
                         .map(
